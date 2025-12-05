@@ -1,6 +1,6 @@
-from pyMaze import maze, agent, COLOR
+from pyMaze import maze, agent, COLOR, textLabel
 
-def DFS(m, start = None, goal = None):
+def DFS(m, start=None, goal=None):
     
     if start is None:
         start = (m.rows, m.cols)
@@ -34,10 +34,9 @@ def DFS(m, start = None, goal = None):
                 if childCell in explored:
                     continue
                 
-                if childCell not in explored:    
-                    explored.append(childCell)
-                    frontier.append(childCell)
-                    dfsPath[childCell] = currCell
+                explored.append(childCell)
+                frontier.append(childCell)
+                dfsPath[childCell] = currCell
                 
     fwdPath = {}
     cell = goal
@@ -46,29 +45,32 @@ def DFS(m, start = None, goal = None):
         fwdPath[dfsPath[cell]] = cell
         cell = dfsPath[cell]
         
-        
     return dSearch, dfsPath, fwdPath
-        
-                
-            
-
-m = maze(5, 5)
-m.CreateMaze()
-
-start = (5,5)
-goal = (1,1)
-
-dSearch, dfsPath, fwdPath = DFS(m, start, goal)
-
-a = agent(m,5,5, goal = goal, footprints = True, shape = 'square', color = COLOR.green)
-b = agent(m,1,1, goal = start, footprints = True, filled = True)
-c = agent(m,5,5, goal = goal, footprints = True, color = COLOR.yellow)
 
 
-m.tracePath({a:dSearch}, showMarked = True)
-m.tracePath({b:dfsPath})
-m.tracePath({c:fwdPath})
+# ---------------- RUN ---------------- #
+m=maze(15,20)
+m.CreateMaze(loopPercent=10, theme='dark')
 
-print(m.maze_map)
+# Run DFS
+dSearch, dfsPath, fwdPath = DFS(m)
+
+# Agents for visualization:
+# a → shows BFS search order
+a = agent(m, footprints=True, color=COLOR.red, shape='square', filled=True)
+
+# b → shows the final shortest path
+b = agent(m, footprints=True, color=COLOR.light, shape='square', filled=False)
+
+# c → shows parent links discovered during BFS
+c = agent(m, 1, 1, footprints=True, color=COLOR.cyan, shape='square',
+              filled=True, goal=(m.rows, m.cols))
+
+# Visual tracing of the paths
+m.tracePath({a: dSearch}, delay=100)     # BFS exploration order
+m.tracePath({c: dfsPath}, delay=100)     # BFS parent relations
+m.tracePath({b: fwdPath}, delay=100)     # Final shortest path
+
+textLabel(m,'DFS Path Length',len(fwdPath)+1)
 
 m.run()

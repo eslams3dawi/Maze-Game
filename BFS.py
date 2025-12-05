@@ -62,30 +62,29 @@ def BFS(m, start=None):
 #                    MAIN EXECUTION & VISUALIZATION
 # ===========================================================
 
-if __name__ == '__main__':
 
-    m = maze(10, 10)
+m=maze(15,20)
+m.CreateMaze(loopPercent=10, theme='dark')
 
-    # CreateMaze(goal_row, goal_col, loopPercent, theme)
-    m.CreateMaze( loopPercent=10, theme='dark')
+# Run BFS
+bSearch, bfsPath, fwdPath = BFS(m)
 
-    # Run BFS
-    bSearch, bfsPath, fwdPath = BFS(m)
+# Agents for visualization:
+# a → shows BFS search order
+a = agent(m, footprints=True, color=COLOR.yellow, shape='square', filled=True)
 
-    # Agents for visualization:
-    # a → shows BFS search order
-    a = agent(m, footprints=True, color=COLOR.yellow, shape='square', filled=True)
+# b → shows the final shortest path
+b = agent(m, footprints=True, color=COLOR.red, shape='square', filled=False)
 
-    # b → shows the final shortest path
-    b = agent(m, footprints=True, color=COLOR.red, shape='square', filled=False)
-
-    # c → shows parent links discovered during BFS
-    c = agent(m, 1, 1, footprints=True, color=COLOR.cyan, shape='square',
+# c → shows parent links discovered during BFS
+c = agent(m, 1, 1, footprints=True, color=COLOR.cyan, shape='square',
               filled=True, goal=(m.rows, m.cols))
 
-    # Visual tracing of the paths
-    m.tracePath({a: bSearch}, delay=100)     # BFS exploration order
-    m.tracePath({c: bfsPath}, delay=100)     # BFS parent relations
-    m.tracePath({b: fwdPath}, delay=100)     # Final shortest path
+# Visual tracing of the paths
+m.tracePath({a: bSearch}, delay=100)     # BFS exploration order
+m.tracePath({c: bfsPath}, delay=100)     # BFS parent relations
+m.tracePath({b: fwdPath}, delay=100)     # Final shortest path
 
-    m.run()
+textLabel(m,'BFS Path Length',len(fwdPath)+1)
+
+m.run()

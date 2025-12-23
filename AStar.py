@@ -1,4 +1,4 @@
-from pyamaze import maze, agent, textLabel, COLOR
+from pyMaze import maze, agent, textLabel, COLOR
 from queue import PriorityQueue
 
 
@@ -13,12 +13,11 @@ from queue import PriorityQueue
 # - If costs tie: it uses lowest h(n)
 # - If still tied: it may choose any cell
 
-
 def h(cell1, cell2):
     # Manhattan Distance Heuristic
     x1, y1 = cell1
     x2, y2 = cell2
-    return abs(x1 - x2) + abs(y1 - y2)
+    return abs(x1 - x2) + abs(y1 - y2) ###explain
 
 
 def aStar(m):
@@ -93,7 +92,7 @@ m = maze(15, 20)
 # rows = height
 # cols = width
 
-m.CreateMaze(loopPercent=10, theme='dark')
+m.CreateMaze(loadMaze='maze--2025-12-23--20-00-35.csv')
 # loopPercent = number of loops (0 = purely perfect maze)
 # theme = background color style
 # loadMaze = load maze shape from CSV (if you saved one)

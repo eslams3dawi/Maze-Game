@@ -64,7 +64,7 @@ def BFS(m, start=None):
 
 
 m=maze(15,20)
-m.CreateMaze(loopPercent=10, theme='dark')
+m.CreateMaze(loadMaze='maze--2025-12-23--20-00-35.csv')
 
 # Run BFS
 bSearch, bfsPath, fwdPath = BFS(m)
@@ -85,6 +85,7 @@ m.tracePath({a: bSearch}, delay=100)     # BFS exploration order
 m.tracePath({c: bfsPath}, delay=100)     # BFS parent relations
 m.tracePath({b: fwdPath}, delay=100)     # Final shortest path
 
-textLabel(m,'BFS Path Length',len(fwdPath)+1)
+textLabel(m, 'BFS Path Length', len(fwdPath) + 1)
+textLabel(m, 'BFS Search Length', len(bfsPath))
 
 m.run()

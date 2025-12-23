@@ -17,7 +17,7 @@ def h(cell1, cell2):
     # Manhattan Distance Heuristic
     x1, y1 = cell1
     x2, y2 = cell2
-    return abs(x1 - x2) + abs(y1 - y2) ###explain
+    return abs(x1 - x2) + abs(y1 - y2) ###explain //(6,5)(1,1) → (6-1)+(5-1)= 9
 
 
 def aStar(m):
@@ -92,7 +92,7 @@ m = maze(15, 20)
 # rows = height
 # cols = width
 
-m.CreateMaze(loadMaze='maze--2025-12-23--20-00-35.csv')
+m.CreateMaze(loadMaze='maze--2025-12-23--22-44-35.csv')
 # loopPercent = number of loops (0 = purely perfect maze)
 # theme = background color style
 # loadMaze = load maze shape from CSV (if you saved one)
@@ -114,7 +114,7 @@ m.tracePath({a: searchPath}, delay=100)
 m.tracePath({b: aPath}, delay=100)
 m.tracePath({c: fwdPath}, delay=100)
 
-textLabel(m, 'A Star Path Length', len(fwdPath) + 1)
+textLabel(m, 'A Star Path Length', len(fwdPath))
 textLabel(m, 'A Star Search Length', len(searchPath))
 
 m.run()

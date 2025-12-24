@@ -83,38 +83,38 @@ def aStar(m):
 
 # ------------ GUI With Documentation ------------- #
 
-# m = maze(15, 20)
+m = maze(15, 20)
 
-# # Any maze consists of a matrix:
-# # (1,1) (1,2) (1,3)
-# # (2,1) (2,2) (2,3)
-# #
-# # rows = height
-# # cols = width
+# Any maze consists of a matrix:
+# (1,1) (1,2) (1,3)
+# (2,1) (2,2) (2,3)
+#
+# rows = height
+# cols = width
 
-# m.CreateMaze(loadMaze='maze--2025-12-23--22-44-35.csv')
-# # loopPercent = number of loops (0 = purely perfect maze)
-# # theme = background color style
-# # loadMaze = load maze shape from CSV (if you saved one)
-# # pattern='h' → horizontal bias
-
-
-# # Run A*
-# searchPath, aPath, fwdPath = aStar(m)
-
-# # Visualization agents:
-# a = agent(m, footprints=True, color=COLOR.blue, filled=True)      # Search path
-# b = agent(m, 1, 1, footprints=True, color=COLOR.yellow, filled=True,
-#           goal=(m.rows, m.cols))                                  # Parent path
-# c = agent(m, footprints=True, color=COLOR.red)                    # Final path
+m.CreateMaze(loadMaze='maze--2025-12-23--22-44-35.csv')
+# loopPercent = number of loops (0 = purely perfect maze)
+# theme = background color style
+# loadMaze = load maze shape from CSV (if you saved one)
+# pattern='h' → horizontal bias
 
 
-# # Visual tracing
-# m.tracePath({a: searchPath}, delay=100)
-# m.tracePath({b: aPath}, delay=100)
-# m.tracePath({c: fwdPath}, delay=100)
+# Run A*
+searchPath, aPath, fwdPath = aStar(m)
 
-# textLabel(m, 'A Star Path Length', len(fwdPath))
-# textLabel(m, 'A Star Search Length', len(searchPath))
+# Visualization agents:
+a = agent(m, footprints=True, color=COLOR.blue, filled=True)      # Search path
+b = agent(m, 1, 1, footprints=True, color=COLOR.yellow, filled=True,
+          goal=(m.rows, m.cols))                                  # Parent path
+c = agent(m, footprints=True, color=COLOR.red)                    # Final path
 
-# m.run()
+
+# Visual tracing
+m.tracePath({a: searchPath}, delay=100)
+m.tracePath({b: aPath}, delay=100)
+m.tracePath({c: fwdPath}, delay=100)
+
+textLabel(m, 'A Star Path Length', len(fwdPath))
+textLabel(m, 'A Star Search Length', len(searchPath))
+
+m.run()

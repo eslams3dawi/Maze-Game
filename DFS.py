@@ -50,29 +50,29 @@ def DFS(m, start=None, goal=None):
 
 
 # ---------------- RUN ---------------- #
-m=maze(15,20)
-m.CreateMaze(loadMaze='maze--2025-12-23--22-44-35.csv')
+# m=maze(15,20)
+# m.CreateMaze(loadMaze='maze--2025-12-23--22-44-35.csv')
 
-# Run DFS
-dSearch, dfsPath, fwdPath = DFS(m)
+# # Run DFS
+# dSearch, dfsPath, fwdPath = DFS(m)
 
-# Agents for visualization:
-# a → shows BFS search order
-a = agent(m, footprints=True, color=COLOR.red, shape='square', filled=True)
+# # Agents for visualization:
+# # a → shows BFS search order
+# a = agent(m, footprints=True, color=COLOR.red, shape='square', filled=True)
 
-# b → shows the final shortest path
-b = agent(m, footprints=True, color=COLOR.light, shape='square', filled=False)
+# # b → shows the final shortest path
+# b = agent(m, footprints=True, color=COLOR.light, shape='square', filled=False)
 
-# c → shows parent links discovered during BFS
-c = agent(m, 1, 1, footprints=True, color=COLOR.cyan, shape='square',
-              filled=True, goal=(m.rows, m.cols))
+# # c → shows parent links discovered during BFS
+# c = agent(m, 1, 1, footprints=True, color=COLOR.cyan, shape='square',
+#               filled=True, goal=(m.rows, m.cols))
 
-# Visual tracing of the paths
-m.tracePath({a: dSearch}, delay=100)     # BFS exploration order
-m.tracePath({c: dfsPath}, delay=100)     # BFS parent relations
-m.tracePath({b: fwdPath}, delay=100)     # Final shortest path
+# # Visual tracing of the paths
+# m.tracePath({a: dSearch}, delay=100)     # BFS exploration order
+# m.tracePath({c: dfsPath}, delay=100)     # BFS parent relations
+# m.tracePath({b: fwdPath}, delay=100)     # Final shortest path
 
-textLabel(m, 'DFS Path Length', len(fwdPath))
-textLabel(m, 'DFS Search Length', len(dSearch))
+# textLabel(m, 'DFS Path Length', len(fwdPath))
+# textLabel(m, 'DFS Search Length', len(dSearch))
 
-m.run() 
+# m.run() 
